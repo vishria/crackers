@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Content Viewer</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Page -->
+        <div id="login-page">
+            <h1 class="login-title">Secure Content Viewer</h1>
+            <form class="login-form" id="login-form">
+                <div class="input-group">
+                    <label for="password">Enter Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="login-btn">Unlock Content</button>
+            </form>
+            <p class="error-message" id="error-message">Incorrect password. Please try again.</p>
+        </div>
+        
+        <!-- Main Content Page -->
+        <div id="main-page">
+            <div class="content-area">
+                <!-- Message Slide -->
+                <div class="content-slide active" id="message-slide">
+                    <div class="slide-header">
+                        <h2 class="slide-title">Messages</h2>
+                        <button id="refresh-orders-btn" class="shop-icon-btn" title="Refresh Orders">🔄</button>
+                    </div>
+                    <div class="message-list">
+                        <h2 class="slide-subtitle">Recent</h2>
+                        <div id="dynamic-order-list"></div>
+                    </div>
+                    
+                    <!-- Message Detail View -->
+                    <div class="message-detail" id="message-detail">
+                        <div class="message-header">
+                            <div class="message-back" id="message-back">←</div>
+                            <div class="message-detail-avatar" id="detail-avatar"></div>
+                            <div class="message-detail-sender" id="detail-sender"></div>
+                            <i class="material-icons" style="font-size:24px; color:red;">delete</i>               <!-- NEWELY ADDED DAA MAKE FUNCTION ON IT -->
+                        </div>
+                        <div class="message-body" id="detail-body"></div>
+                        <div class="message-date" id="detail-time"></div>
+                    </div>
+                </div>
+                
+                <!-- Shop Slide -->
+                <div class="content-slide shop-content" id="edit-slide">
+                    <header class="shop-header">
+                        <div class="logo">KRISHNA CRACKERS</div>
+
+                        <!-- Navbar -->
+                        <nav class="shop-navbar">
+                            <div class="shop-nav-links">
+                                <a href="#">Home</a>
+                                <a href="#">Products</a>
+                                <a href="#">Contact</a>
+                            </div>
+                            <div class="shop-nav-icons">
+                                <span class="toggle-btn" id="menuToggle">☰</span>
+                                <span class="cart-btn" id="cartToggle">🛒</span>
+                            </div>
+                        </nav>
+
+                        <!-- Mobile Menu -->
+                        <div class="mobile-menu" id="mobileMenu">
+                            <button class="close-btn" id="closeMenu">✖</button>
+                        </div>
+
+                        <!-- Cart Sidebar -->
+                        <div class="cart-menu" id="cartMenu">
+                            <button class="close-btn" id="closeCart">✖</button>
+                            <h2>My Cart</h2>
+                            <div class="cart-items" id="cartItems"></div>
+                            <div class="cart-total">
+                                <p>Total: ₹<span id="cartTotal">0.00</span></p>
+                                <button class="checkout-btn">Checkout</button>
+                            </div>
+                        </div>
+
+                        <div class="overlay" id="overlay"></div>
+                    </header>
+
+                    <main class="shop-main">
+                        <!-- Categories and product lists will be dynamically generated via JS -->
+                    </main>
+
+                    <footer class="shop-footer">
+                        <div class="footer-left">
+                            <h4>KRISHNA CRACKERS</h4>
+                            <p>Bringing joy to your celebrations since 2012.</p>
+                        </div>
+                        <div class="footer-right">
+                            <div>
+                                <h5>Quick Links</h5>
+                                <a href="#">Products</a>
+                                <a href="#">Terms of Service</a>
+                            </div>
+                            <div>
+                                <h5>Legal</h5>
+                                <a href="#">Privacy Policy</a>
+                                <a href="#">Shipping Policy</a>
+                            </div>
+                        </div>
+                        <div class="social">
+                            <p>Follow Us</p>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+            
+            <!-- Bottom Navbar -->
+            <div class="bottom-navbar">
+                <button class="nav-btn active" data-slide="message-slide">
+                    <i>💬</i>
+                    <span>Messages</span>
+                </button>
+                <button class="nav-btn" data-slide="edit-slide">
+                    <i>✏️</i>
+                    <span>Edit</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal" id="addProductModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add New Product</h3>
+                <button class="modal-close" id="closeAddProductModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="image-preview" id="imagePreview"></div>
+                <div class="modal-input-group">
+                    <label for="productImage">Product Image</label>
+                    <input type="file" id="productImage" accept="image/*">
+                </div>
+                <div class="modal-input-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" id="productName">
+                </div>
+                <div class="modal-input-group">
+                    <label for="productPrice">Price (₹)</label>
+                    <input type="number" id="productPrice" min="0" step="0.01">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary" id="cancelAddProduct">Cancel</button>
+                <button class="modal-btn modal-btn-primary" id="saveProduct">Save Product</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Upload Modal -->
+    <div class="modal" id="imageUploadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Change Product Image</h3>
+                <button class="modal-close" id="closeImageModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="image-preview" id="uploadImagePreview"></div>
+                <div class="modal-input-group">
+                    <label for="imageUpload">Select Image</label>
+                    <input type="file" id="imageUpload" accept="image/*">
+                </div>
+                <div class="modal-input-group">
+                    <label for="imageUrl">Or enter image URL</label>
+                    <input type="text" id="imageUrl">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary" id="cancelImageUpload">Cancel</button>
+                <button class="modal-btn modal-btn-primary" id="saveImage">Save Image</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="addCategoryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add New Category</h3>
+                <button class="modal-close" id="closeAddCategoryModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-input-group">
+                    <label for="categoryName">Category Name</label>
+                    <input type="text" id="categoryName" placeholder="e.g., Sparklers">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary" id="cancelAddCategory">Cancel</button>
+                <button class="modal-btn modal-btn-primary" id="saveCategory">Save Category</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Are you sure?</h3>
+                <button class="modal-close" id="closeConfirmModal">×</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage">This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary" id="cancelConfirm">Cancel</button>
+                <button class="modal-btn modal-btn-danger" id="confirmAction">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="snackbar"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
