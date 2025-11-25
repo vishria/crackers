@@ -1,0 +1,216 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krishna Crackers - Firework Collection</title>
+  <link rel="icon" href="1.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="styles-index.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo"> <img src="kri.png" alt="Logo" style="width: 50px; height: 50px; "> </div>
+
+    <nav class="nav-desktop">
+      <a href="#">Home</a>
+      <a href="#">Products</a>
+      <a href="#">About Us</a>
+      <a href="#">Contact</a>
+      
+    </nav>
+    
+    <div class="header-icons">
+      <div class="search-icon" id="searchToggle">
+        <span>🔍</span>
+      </div>
+      <div class="cart-icon" id="cartToggle">
+        <span>🛒</span>
+        <span class="cart-count">0</span>
+      </div>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+
+    
+  </header>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu" id="mobileMenu">
+    <button class="close-menu" id="closeMenu">✕</button>
+    <a href="#">Home</a>
+    <a href="#">Products</a>
+    <a href="#">About Us</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <!-- Cart Menu -->
+  <div class="cart-menu" id="cartMenu">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="close-cart" id="closeCart">✕</button>
+    </div>
+    
+    <div class="cart-items" id="cartItems">
+      <p class="empty-cart-msg">Your cart is empty</p>
+    </div>
+    
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cartTotal">₹0.00</span>
+      </div>
+      <button class="checkout-btn">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Hero Section -->
+  <section class="hero"> 
+    <div class="footer-left">
+        <h4 id = "multicolor-text">KRISHNA CRACKERS THIYAGADURGAM</h4>
+
+
+       <!--
+        <p style="color: #ff8f00; font-weight: 600">Bringing joy to your celebrations since 1997.</p>
+        <div>
+            <p style="color: #c012a9; font-weight: bold; font-size: 18px "> 
+              <i style="color: #c012a9;"></i> Contact 
+              <i class="fa fa-phone" style="color: yellow; margin: 0 5px;"></i> 
+              <a href="tel:+919095506226" style="color: #c012a9; text-decoration: none;">+91 90955 06226</a>
+            </p>
+          </div>
+          <div>
+            <p style="color: #ffffff; font-weight: bold;">
+              <i class="fab fa-google" style="font-size: 20px;"></i> 
+              <a href="upi://pay?pa=hariharan641099-1@okaxis&pn=Hariharan&am=&cu=INR" style="color: #ffffff; text-decoration: none;">-Pay: 9095506226 </a>
+
+            </p>
+          </div>
+        </div>
+      
+  </section>       -->
+
+
+<!-- Main Content  -->
+
+  <main id="productContainer">
+    <!-- Categories and products will be dynamically inserted here via JS -->
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <h4>KRISHNA CRACKERS THIYAGADURGAM</h4>
+        <p>Bringing joy to your celebrations since 1997.</p>
+        <p>For Further Details +91 90955 06226</p>
+        <p>For G-Pay 9095506226</p>
+      </div>
+      <div class="footer-right">
+        
+        <div>
+          <h5>Legal</h5>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Shipping Policy</a>
+          <a href="#">Return Policy</a>
+        </div>
+      </div>
+      <div class="social">
+        <p>Follow Us</p>
+        <div>
+          <a href="#">FB</a>
+          <a href="#">IG</a>
+          <a href="#">YT</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Checkout Page (initially hidden) -->
+  <div class="checkout-container" id="checkoutPage">
+    <header class="checkout-header">
+      <h1>Checkout</h1>
+    </header>
+    
+    <div class="checkout-content">
+      <div class="checkout-summary">
+        <h2>Order Summary</h2>
+        <div class="checkout-items" id="checkoutItems">
+          <!-- Checkout items will be inserted dynamically -->
+        </div>
+        <div class="checkout-total">
+          <span>Total:</span>
+          <span id="checkoutTotal">₹0.00</span>
+        </div>
+      </div>
+      
+      <div class="checkout-form">
+        <h2>Shipping Information</h2>
+        <form id="shippingForm">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="address">Shipping Address</label>
+            <textarea id="address" rows="3" required></textarea>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" id="city" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="state">State</label>
+              <select id="state" required>                
+                <option value="India" selected>Tamil Nadu</option>                
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="zipCode">ZIP Code</label>
+              <input type="text" id="zipCode" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="country">Country</label>
+              <select id="country" required>
+                
+                <option value="India" selected>India</option>
+                
+              </select>
+            </div>
+          </div>
+          
+          <button type="submit" class="place-order-btn">Place Order</button>
+        </form>
+        
+        <a href="#" class="back-to-shopping" id="backToShopping">← Back to Shopping</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add this before the closing body tag -->
+<div class="navigation-arrows">
+  <button class="nav-arrow up-arrow" style = "background-color:#cbcb38" id="upArrow">↑</button>
+  <button class="nav-arrow down-arrow" id="downArrow">↓</button>
+</div>
+
+  <script src="script-index.js"></script>
+
+</body>
+</html>
